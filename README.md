@@ -29,7 +29,10 @@ Glass Wizard lets you **compose original music with an AI engine** and instantly
 
 ```bash
 npm install
-npm run dev         # start Express server on http://localhost:3000
+npm run build       # compile TypeScript → dist/
+npm start           # start production server on http://localhost:3000
+# or for development (no build step required):
+npm run dev         # start server via ts-node on http://localhost:3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -37,11 +40,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### CLI Demo
 
 ```bash
-npx ts-node src/index.ts                  # generate a track and show serialised output
-DEMO_XRPL=true npx ts-node src/index.ts  # also fund a Testnet wallet and mint an NFT
+npm run demo                  # generate a sample track and print output
+npm run demo:xrpl             # also fund a Testnet wallet and mint an NFT
+# (requires a prior `npm run build`)
 ```
-
----
 
 ## Architecture
 
