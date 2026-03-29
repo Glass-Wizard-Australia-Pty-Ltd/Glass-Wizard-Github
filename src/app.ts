@@ -25,6 +25,22 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 // ---------------------------------------------------------------------------
+// Health check
+// ---------------------------------------------------------------------------
+
+/**
+ * GET /api/health
+ * Returns a lightweight health-check response for monitoring and smoke tests.
+ */
+app.get("/api/health", (_req: Request, res: Response) => {
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    network: process.env["XRPL_NETWORK"] ?? "testnet",
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Music generation
 // ---------------------------------------------------------------------------
 
