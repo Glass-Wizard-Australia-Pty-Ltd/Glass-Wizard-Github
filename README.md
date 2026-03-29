@@ -74,6 +74,7 @@ tests/
 
 | Method | Path | Description |
 |---|---|---|
+| GET  | `/api/health` | Health check – returns `{"status":"ok"}` |
 | POST | `/api/music/generate` | Generate an AI music track |
 | POST | `/api/music/serialize` | Serialise a track to JSON string |
 | POST | `/api/music/deserialize` | Deserialise a JSON string to a track |
@@ -125,6 +126,64 @@ The `NFTokenTaxon` is set to `0` (Glass Wizard Music category).
 ```bash
 npm test
 ```
+
+---
+
+## Pre-Launch Checklist
+
+Complete every item below before going live with the application.
+
+### Code & quality
+
+- [ ] `npm run build` completes without errors
+- [ ] `npm test` – all tests pass
+- [ ] `npm run lint` – no type errors
+
+### Environment configuration
+
+- [ ] Copy `.env.example` → `.env` and review every value
+- [ ] Decide on the target XRPL network (`XRPL_NETWORK`):
+  - `testnet` — free test tokens, safe for staging / QA
+  - `mainnet` — real XRP required, use for production
+- [ ] Verify that the port (`PORT`) does not conflict with other services
+
+### Vercel account & project (one-time)
+
+- [ ] Create a [Vercel account](https://vercel.com/signup) if you don't already have one
+- [ ] Install the Vercel CLI: `npm install --global vercel`
+- [ ] Log in: `vercel login`
+- [ ] Link this repository to a Vercel project (run once from the repo root):
+  ```bash
+  vercel link
+  ```
+  This creates a `.vercel/project.json` file — **do not commit it**.
+
+### GitHub Actions secrets (one-time)
+
+Add the following [repository secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+so that the CI/CD pipeline can deploy to Vercel automatically:
+
+| Secret | Where to find it |
+|---|---|
+| `VERCEL_TOKEN` | Vercel account → Settings → Tokens → Create |
+| `VERCEL_ORG_ID` | `.vercel/project.json` → `orgId` |
+| `VERCEL_PROJECT_ID` | `.vercel/project.json` → `projectId` |
+
+### Final deployment smoke-test
+
+- [ ] Trigger a production deployment:
+  ```bash
+  vercel --prod
+  # or push / merge to main to trigger GitHub Actions
+  ```
+- [ ] Visit the deployed URL and confirm the Web Studio loads
+- [ ] Call the health endpoint and confirm a healthy response:
+  ```bash
+  curl https://<your-vercel-url>/api/health
+  # Expected: {"status":"ok","timestamp":"<ISO date>","network":"mainnet"}
+  ```
+- [ ] Generate a music track in the UI and verify playback works
+- [ ] Create a Testnet wallet and mint an NFT to confirm the XRPL flow end-to-end
 
 ---
 
