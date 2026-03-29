@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glass Wizard – Music NFT Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">🎵 Glass Wizard</div>
+    <p class="tagline">AI Music · XRPL NFTs</p>
+  </header>
+
+  <main class="container">
+
+    <!-- ── Wallet Panel ─────────────────────────────────────────────────── -->
+    <section class="panel" id="wallet-panel">
+      <h2>🔑 Wallet</h2>
+      <div class="wallet-status" id="wallet-status">No wallet connected</div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="btn-create-wallet">Create Testnet Wallet</button>
+        <button class="btn btn-outline" id="btn-load-wallet">Load from Seed</button>
+      </div>
+
+      <div id="seed-input-area" class="hidden">
+        <input type="password" id="seed-input" placeholder="Enter wallet seed (s…)" />
+        <button class="btn btn-sm" id="btn-confirm-seed">Load</button>
+      </div>
+
+      <div id="wallet-details" class="hidden">
+        <p><strong>Address:</strong> <code id="wallet-address"></code></p>
+        <p><strong>Balance:</strong> <span id="wallet-balance">–</span> XRP</p>
+        <a id="wallet-explorer-link" href="#" target="_blank" rel="noopener">View on Explorer ↗</a>
+      </div>
+    </section>
+
+    <!-- ── Music Studio ─────────────────────────────────────────────────── -->
+    <section class="panel" id="studio-panel">
+      <h2>🎛 Music Studio</h2>
+
+      <div class="controls">
+        <label>Style
+          <select id="style-select">
+            <option value="electronic">Electronic</option>
+            <option value="ambient">Ambient</option>
+            <option value="jazz">Jazz</option>
+            <option value="classical">Classical</option>
+            <option value="pop">Pop</option>
+            <option value="experimental">Experimental</option>
+          </select>
+        </label>
+
+        <label>Scale
+          <select id="scale-select">
+            <option value="C_MAJOR">C Major</option>
+            <option value="A_MINOR">A Minor</option>
+            <option value="G_MAJOR">G Major</option>
+            <option value="D_MINOR">D Minor</option>
+            <option value="PENTATONIC">Pentatonic</option>
+            <option value="BLUES">Blues</option>
+            <option value="DORIAN">Dorian</option>
+            <option value="LYDIAN">Lydian</option>
+          </select>
+        </label>
+
+        <label>Bars
+          <input type="number" id="bars-input" value="8" min="2" max="32" />
+        </label>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="btn-generate">✨ Generate Track</button>
+        <button class="btn btn-success hidden" id="btn-play">▶ Play</button>
+        <button class="btn btn-outline hidden" id="btn-stop">■ Stop</button>
+      </div>
+
+      <div id="track-info" class="hidden track-info">
+        <h3 id="track-name"></h3>
+        <div class="track-meta">
+          <span id="track-tempo"></span>
+          <span id="track-scale"></span>
+          <span id="track-notes"></span>
+        </div>
+        <!-- Piano-roll visualisation -->
+        <canvas id="piano-roll" width="700" height="140"></canvas>
+      </div>
+    </section>
+
+    <!-- ── NFT Minting ───────────────────────────────────────────────────── -->
+    <section class="panel" id="nft-panel">
+      <h2>🖼 Mint as NFT</h2>
+      <p class="hint">Generate a track and connect a wallet first.</p>
+
+      <label>Royalty (transfer fee 0–50 000, units of 0.001%)
+        <input type="number" id="transfer-fee" value="1000" min="0" max="50000" />
+      </label>
+
+      <button class="btn btn-primary" id="btn-mint" disabled>🔨 Mint NFT on XRPL</button>
+
+      <div id="mint-result" class="hidden">
+        <p>✅ NFT minted!</p>
+        <p><strong>Token ID:</strong><br /><code id="nft-token-id"></code></p>
+        <a id="nft-explorer-link" href="#" target="_blank" rel="noopener">View NFT on Explorer ↗</a>
+      </div>
+    </section>
+
+    <!-- ── My NFTs ───────────────────────────────────────────────────────── -->
+    <section class="panel" id="my-nfts-panel">
+      <h2>🎵 My Music NFTs</h2>
+      <button class="btn btn-outline" id="btn-load-nfts" disabled>Refresh NFTs</button>
+      <div id="nft-list" class="nft-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Glass Wizard Australia Pty Ltd · XRPL Testnet · Open Source</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
