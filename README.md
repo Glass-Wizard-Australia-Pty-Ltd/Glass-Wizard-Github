@@ -128,6 +128,56 @@ npm test
 
 ---
 
+## Deploying to Vercel
+
+The app is pre-configured for [Vercel](https://vercel.com) serverless deployment:
+
+| File | Role |
+|---|---|
+| `vercel.json` | Routes `/api/*` to the serverless function; serves static assets from `public/`; SPA fallback to `index.html` |
+| `api/index.ts` | Vercel serverless entry point – re-exports the Express app |
+
+### One-time Vercel project setup
+
+1. Install the Vercel CLI and log in:
+   ```bash
+   npm install --global vercel
+   vercel login
+   ```
+2. Link the project to a Vercel organisation/project (run once from the repo root):
+   ```bash
+   vercel link
+   ```
+   This creates a `.vercel/` directory with `project.json` – **do not commit it**.
+
+3. Add the following [GitHub Actions secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) to the repository:
+   | Secret | Where to find it |
+   |---|---|
+   | `VERCEL_TOKEN` | Vercel account → Settings → Tokens |
+   | `VERCEL_ORG_ID` | `.vercel/project.json` → `orgId` |
+   | `VERCEL_PROJECT_ID` | `.vercel/project.json` → `projectId` |
+
+### Automatic CI/CD (GitHub Actions)
+
+The workflow at `.github/workflows/deploy.yml` runs automatically:
+
+| Event | Jobs |
+|---|---|
+| Pull request targeting `main` | Lint → Test → **Preview deployment** |
+| Push / merge to `main` | Lint → Test → **Production deployment** |
+
+### Manual deployment
+
+```bash
+# preview (development) deployment
+vercel
+
+# production deployment
+vercel --prod
+```
+
+---
+
 ## License
 
 MIT © Glass Wizard Australia Pty Ltd
