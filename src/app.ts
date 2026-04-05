@@ -25,6 +25,22 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 // ---------------------------------------------------------------------------
+// Health check (used by monitoring tools and deployment pipelines)
+// ---------------------------------------------------------------------------
+
+/**
+ * GET /api/health
+ * Returns 200 with basic runtime information when the server is healthy.
+ */
+app.get("/api/health", (_req: Request, res: Response) => {
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+    network: process.env["XRPL_NETWORK"] ?? "testnet",
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Music generation
 // ---------------------------------------------------------------------------
 
