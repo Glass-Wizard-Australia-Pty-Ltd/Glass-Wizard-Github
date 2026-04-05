@@ -1,21 +1,36 @@
 # Security Policy
 
-## Supported Versions
+## 🛰️ Our Commitment
+At Glass Wizard Australia, the integrity of our AI Music Engine and the safety of our users' XRPL assets are our highest priorities. We appreciate the work of security researchers in keeping the "Layers of Time" ecosystem secure.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## 🛡️ Supported Versions
+We actively provide security updates for the following versions:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.0.x   | ✅ Yes (Production) |
+| < 1.0.0 | ❌ No               |
 
-## Reporting a Vulnerability
+## 📢 Reporting a Vulnerability
+**Do not open a public GitHub Issue for security vulnerabilities.** If you discover a potential security flaw in the Glass Wizard Studio, please report it privately via one of the following channels:
 
-Use this section to tell people how to report a vulnerability.
+1.  **Encrypted Email:** [Your-Security-Email@glasswizard.com.au]
+2.  **Xaman/XUMM Memo:** Send a 1-drop transaction to our company wallet `[Your-Wallet-Address]` with an encrypted memo.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+### What to Include:
+* A detailed description of the vulnerability.
+* Steps to reproduce the exploit (Proof of Concept).
+* Potential impact (e.g., Wallet seed exposure, unauthorized minting).
+
+## 🎖️ Response Process
+* **Acknowledgment:** We will respond within **48 hours** to confirm receipt of your report.
+* **Evaluation:** Our technical unit (The Wizard's Council) will evaluate the severity.
+* **Disclosure:** Once a fix is deployed, we will coordinate a public disclosure and credit the researcher (unless anonymity is requested).
+
+## 🚫 Out of Scope
+* Vulnerabilities in the XRP Ledger (XRPL) itself (these should be reported to Ripple/XRPL Labs).
+* Vulnerabilities in the Vercel infrastructure.
+* Social engineering or physical security of the Mount Gambier studio.
+
+---
+*Last Updated: 05 April 2026*
