@@ -36,13 +36,32 @@ jobs:
       - name: Run tests
         run: npm test
 
+  check-vercel-credentials:
+    name: Check Vercel credentials
+    runs-on: ubuntu-latest
+    outputs:
+      available: ${{ steps.check.outputs.available }}
+    steps:
+      - id: check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID_CHECK: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID_CHECK: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_ORG_ID_CHECK" ] && [ -n "$VERCEL_PROJECT_ID_CHECK" ]; then
+            echo "available=true" >> $GITHUB_OUTPUT
+          else
+            echo "available=false" >> $GITHUB_OUTPUT
+            echo "::warning::Vercel secrets are not fully configured. Add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID to repository secrets to enable deployments."
+          fi
+
   deploy-preview:
     name: Deploy Preview
-    needs: test
+    needs: [test, check-vercel-credentials]
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && needs.check-vercel-credentials.outputs.available == 'true'
     steps:
       - uses: actions/checkout@v4
 
@@ -68,11 +87,11 @@ jobs:
 
   deploy-production:
     name: Deploy Production
-    needs: test
+    needs: [test, check-vercel-credentials]
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.check-vercel-credentials.outputs.available == 'true'
     steps:
       - uses: actions/checkout@v4
 
