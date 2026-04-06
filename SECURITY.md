@@ -1,7 +1,7 @@
 # Security Policy
 
 ## 🛰️ Our Commitment
-At Glass Wizard Australia, the integrity of our AI Music Engine and the safety of our users' XRPL assets are our highest priorities. We appreciate the work of security researchers in keeping the "Layers of Time" ecosystem secure.
+At Glass Wizard Australia, the integrity of our AI Music Engine and the safety of our users' XRPL assets are our highest priorities. We appreciate the work of security researchers in keeping the Glass Wizard Studio secure.
 
 ## 🛡️ Supported Versions
 We actively provide security updates for the following versions:
@@ -14,8 +14,8 @@ We actively provide security updates for the following versions:
 ## 📢 Reporting a Vulnerability
 **Do not open a public GitHub Issue for security vulnerabilities.** If you discover a potential security flaw in the Glass Wizard Studio, please report it privately via one of the following channels:
 
-1.  **Encrypted Email:** [Your-Security-Email@glasswizard.com.au]
-2.  **Xaman/XUMM Memo:** Send a 1-drop transaction to our company wallet `[Your-Wallet-Address]` with an encrypted memo.
+1.  **Encrypted Email:** wizardofoztralia85@gmail.com
+2.  **Xaman/XUMM Memo:** Send a 1-drop transaction to our company wallet `raQTFMYzmd6V6P9jdhSbPVBKvhDs7PRXAG` with an encrypted memo.
 
 ### What to Include:
 * A detailed description of the vulnerability.
@@ -33,4 +33,4 @@ We actively provide security updates for the following versions:
 * Social engineering or physical security of the Mount Gambier studio.
 
 ---
-*Last Updated: 05 April 2026*
+*Last Updated: 06 April 2026*
