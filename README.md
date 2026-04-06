@@ -74,7 +74,7 @@ tests/
 
 | Method | Path | Description |
 |---|---|---|
-| GET  | `/api/health` | Health check – returns `{"status":"ok"}` |
+| GET  | `/api/health` | Health check – returns `{"status":"ok","timestamp":"<iso8601>","network":"<network-name>"}` |
 | POST | `/api/music/generate` | Generate an AI music track |
 | POST | `/api/music/serialize` | Serialise a track to JSON string |
 | POST | `/api/music/deserialize` | Deserialise a JSON string to a track |
@@ -183,7 +183,8 @@ so that the CI/CD pipeline can deploy to Vercel automatically:
   # Expected: {"status":"ok","timestamp":"<ISO date>","network":"mainnet"}
   ```
 - [ ] Generate a music track in the UI and verify playback works
-- [ ] Create a Testnet wallet and mint an NFT to confirm the XRPL flow end-to-end
+- [ ] Confirm the XRPL mint flow end-to-end using a wallet on the network configured by `XRPL_NETWORK`
+- [ ] If production is running with `XRPL_NETWORK=mainnet`, treat any Testnet wallet creation and NFT mint as a separate staging-only validation, not part of the production smoke-test
 
 ---
 

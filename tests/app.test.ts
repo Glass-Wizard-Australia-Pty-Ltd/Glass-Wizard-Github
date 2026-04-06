@@ -27,12 +27,19 @@ describe("GET /api/health", () => {
   });
 
   it("defaults network to 'testnet' when XRPL_NETWORK is not set", async () => {
+    const hadEnv = Object.prototype.hasOwnProperty.call(process.env, "XRPL_NETWORK");
     const saved = process.env["XRPL_NETWORK"];
     delete process.env["XRPL_NETWORK"];
 
-    const res = await request(app).get("/api/health");
-    expect(res.body.network).toBe("testnet");
-
-    if (saved !== undefined) process.env["XRPL_NETWORK"] = saved;
+    try {
+      const res = await request(app).get("/api/health");
+      expect(res.body.network).toBe("testnet");
+    } finally {
+      if (hadEnv) {
+        process.env["XRPL_NETWORK"] = saved as string;
+      } else {
+        delete process.env["XRPL_NETWORK"];
+      }
+    }
   });
 });
