@@ -25,6 +25,7 @@
       </div>
 
       <div id="seed-input-area" class="hidden">
+        <p class="hint"><strong>Security warning:</strong> Wallet seeds give full control over your funds. Only enter a testnet/demo seed that you are comfortable using in this web app. Never use a real/mainnet wallet seed here.</p>
         <input type="password" id="seed-input" placeholder="Enter wallet seed (s…)" />
         <button class="btn btn-sm" id="btn-confirm-seed">Load</button>
       </div>
@@ -93,7 +94,7 @@
       <h2>🖼 Mint as NFT</h2>
       <p class="hint">Generate a track and connect a wallet first.</p>
 
-      <label>Royalty (transfer fee 0–50 000, units of 0.001%)
+      <label>Royalty (0–50 000 = 0–50%, where 1000 = 1%)
         <input type="number" id="transfer-fee" value="1000" min="0" max="50000" />
       </label>
 
