@@ -40,6 +40,7 @@ jobs:
     name: Check Vercel credentials
     runs-on: ubuntu-latest
     permissions: {}
+    permissions: {}
     outputs:
       available: ${{ steps.check.outputs.available }}
     steps:
