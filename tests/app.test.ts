@@ -36,7 +36,11 @@ describe("GET /api/health", () => {
       expect(res.body.network).toBe("testnet");
     } finally {
       if (hadEnv) {
-        process.env["XRPL_NETWORK"] = saved as string;
+        if (saved === undefined) {
+          delete process.env["XRPL_NETWORK"];
+        } else {
+          process.env["XRPL_NETWORK"] = saved;
+        }
       } else {
         delete process.env["XRPL_NETWORK"];
       }
