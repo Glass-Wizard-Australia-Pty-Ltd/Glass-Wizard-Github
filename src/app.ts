@@ -36,7 +36,7 @@ app.get("/api/health", (_req: Request, res: Response) => {
   res.json({
     status: "ok",
     timestamp: new Date().toISOString(),
-    network: process.env["XRPL_NETWORK"] ?? "testnet",
+    network: process.env["XRPL_NETWORK"]?.trim() || "testnet",
   });
 });
 
