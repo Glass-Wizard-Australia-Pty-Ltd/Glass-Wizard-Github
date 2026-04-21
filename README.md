@@ -141,11 +141,13 @@ Complete every item below before going live with the application.
 
 ### Environment configuration
 
-- [ ] Copy `.env.example` → `.env` and review every value
+- [ ] Provide required environment variables using your runtime environment:
+  - Local / standalone runs: export them in your shell before starting the app
+  - Vercel deployments: configure them in the project's Environment Variables settings
 - [ ] Decide on the target XRPL network (`XRPL_NETWORK`):
   - `testnet` — free test tokens, safe for staging / QA
   - `mainnet` — real XRP required, use for production
-- [ ] Verify that the port (`PORT`) does not conflict with other services
+- [ ] Verify that the port (`PORT`) does not conflict with other services and is set in the shell or deployment environment
 
 ### Vercel account & project (one-time)
 
