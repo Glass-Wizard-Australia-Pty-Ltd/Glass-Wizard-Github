@@ -8,6 +8,9 @@ on:
       - 'src/types/**/*.ts'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sync-types:
     runs-on: ubuntu-latest
