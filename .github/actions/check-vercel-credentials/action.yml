@@ -1,0 +1,33 @@
+name: Check Vercel credentials
+description: >
+  Checks whether VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID are all
+  present. Emits a warning annotation when any are missing so the caller can
+  gate subsequent Vercel steps with:
+    if: steps.<id>.outputs.has_credentials == 'true'
+
+inputs:
+  vercel-token:
+    description: The Vercel API token (pass secrets.VERCEL_TOKEN)
+    required: false
+    default: ''
+
+outputs:
+  has_credentials:
+    description: "'true' if all three Vercel secrets are set, 'false' otherwise"
+    value: ${{ steps.check.outputs.has_credentials }}
+
+runs:
+  using: composite
+  steps:
+    - name: Verify Vercel secrets
+      id: check
+      shell: bash
+      env:
+        VERCEL_TOKEN: ${{ inputs.vercel-token }}
+      run: |
+        if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+          echo "has_credentials=false" >> "$GITHUB_OUTPUT"
+          echo "::warning::Vercel secrets are not fully configured. Add VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID to repository secrets to enable deployments."
+        else
+          echo "has_credentials=true" >> "$GITHUB_OUTPUT"
+        fi
