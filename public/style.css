@@ -16,6 +16,7 @@
   --muted:      #94a3b8;
   --border:     #2d2d4e;
   --radius:     12px;
+  --accent-glow: rgba(168, 85, 247, 0.2);
   --font:       'Inter', system-ui, sans-serif;
 }
 
@@ -206,7 +207,7 @@ body {
 .timeline-item {
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius);
   padding: 0.85rem 1rem;
 }
 
@@ -224,16 +225,16 @@ body {
 }
 
 .timeline-item.peak {
-  border-color: #5b3cb6;
-  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow);
 }
 
 .checklist {
   margin-top: 1rem;
   padding: 0.9rem 1rem;
-  background: #151534;
-  border: 1px solid #353568;
-  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .checklist h3 {
